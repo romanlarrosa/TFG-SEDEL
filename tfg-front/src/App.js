@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'
+import UserService from 'services/user.service'
 
-function App() {
+function App () {
+  const [content, setContent] = useState('Cargando...')
+  useEffect(() => {
+    UserService.getUserBoard().then(
+      (response) => {
+        setContent(response.data)
+      },
+      (error) => {
+        const _content =
+        (error.response && error.response.data) ||
+          error.message ||
+          error.toString()
+        setContent(_content.message)
+      }
+    )
+  }, [])
+
   return (
     <div className="flex flex-col h-full items-center justify-center bg-gray-200 text-gray-700">
       <div className="flex items-center">
-        <h1 className="text-6xl font-thin tracking-wider">Create React App + Tailwind CSS</h1>
+        <h1 className="text-6xl font-thin tracking-wider text-center">Create React App + Tailwind CSS</h1>
+      </div>
+      <div className="flex items-center">
+        <h2 className="text-6xl font-thin tracking-wider">{content}</h2>
       </div>
       <p className="my-6 tracking-wide">
         Edit <code>src/App.js</code> and save to reload.
@@ -28,7 +48,7 @@ function App() {
         </a>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
