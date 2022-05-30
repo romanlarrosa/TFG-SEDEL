@@ -18,7 +18,7 @@ const NavBar = () => {
     AuthService.logout()
   }
   return (
-    <nav className="sticky top-0 w-full flex flex-wrap items-center justify-between py-3 bg-gray-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light">
+    <nav className="sticky top-0 w-full flex flex-wrap items-center justify-between py-3 bg-purple-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light">
       <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
         <div className="navbar-toggler text-gray-200 border-0 hover:shadow-none hover:no-underline py-2 px-2.5 pr-7 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline">
           <Link
@@ -33,25 +33,24 @@ const NavBar = () => {
           id="navbarSupportedContent1"
         >
           <div className="flex items-center relative">
-            <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
-              {showModeratorBoard && (
+            <ul className="navbar-nav flex flex-row gap-4 pl-0 list-style-none mr-auto">
+              {(showModeratorBoard || showAdminBoard) && (
                 <li className="nav-item">
-                  <Link to={'/mod'} className="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0 hover:decoration-solid">
-                    Moderator Board
+                  <Link
+                    to={'/votaciones'}
+                    className="nav-link text-white opacity-80 hover:opacity-100 focus:opacity-80 p-0 hover:decoration-solid"
+                  >
+                    Votaciones
                   </Link>
                 </li>
               )}
               {showAdminBoard && (
                 <li className="nav-item">
-                  <Link to={'/admin'} className="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0 hover:decoration-solid">
-                    Admin Board
-                  </Link>
-                </li>
-              )}
-              {currentUser && (
-                <li className="nav-item">
-                  <Link to={'/user'} className="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0 hover:decoration-solid">
-                    User
+                  <Link
+                    to={'/usuarios'}
+                    className="nav-link text-white opacity-80 hover:opacity-100 focus:opacity-80 p-0 hover:decoration-solid"
+                  >
+                    Usuarios
                   </Link>
                 </li>
               )}
@@ -60,23 +59,30 @@ const NavBar = () => {
         </div>
         {currentUser
           ? (
-          <div className="navbar-nav ml-auto">
+          <ul className="navbar-nav ml-auto flex flex-row gap-4">
             <li className="nav-item">
-              <Link to={'/profile'} className="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0 hover:decoration-solid">
+              <Link
+                to={'/perfil'}
+                className="nav-link text-white opacity-80 hover:opacity-100 focus:opacity-80 p-0 hover:decoration-solid"
+              >
                 {currentUser.username}
               </Link>
             </li>
             <li className="nav-item">
-              <a href="/login" className="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0 hover:decoration-solid" onClick={logOut}>
-                LogOut
+              <a
+                href="/login"
+                className="nav-link text-red-400 font-semibold opacity-80 hover:opacity-100 focus:opacity-80 p-0 hover:decoration-solid hover:decoration-inherit hover:underline"
+                onClick={logOut}
+              >
+                Cerrar sesión
               </a>
             </li>
-          </div>
+          </ul>
             )
           : (
           <div className="navbar-nav ml-auto">
             <ul>
-              <li className="nav-link text-white opacity-60 hover:opacity-80 focus:opacity-80 p-0 hover:decoration-solid">
+              <li className="nav-link text-white opacity-80 hover:opacity-100 focus:opacity-80 p-0 hover:decoration-solid">
                 <Link to={'/login'} className="nav-link">
                   Login
                 </Link>
