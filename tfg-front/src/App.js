@@ -1,52 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import UserService from 'services/user.service'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Login from 'pages/Login'
+import Home from 'pages/Home'
+import NavBar from 'components/NavBar'
+import UserList from 'pages/UserList'
 
-function App () {
-  const [content, setContent] = useState('Cargando...')
-  useEffect(() => {
-    UserService.getUserBoard().then(
-      (response) => {
-        setContent(response.data)
-      },
-      (error) => {
-        const _content =
-        (error.response && error.response.data) ||
-          error.message ||
-          error.toString()
-        setContent(_content.message)
-      }
-    )
-  }, [])
-
+const App = () => {
   return (
-    <div className="flex flex-col h-full items-center justify-center bg-gray-200 text-gray-700">
-      <div className="flex items-center">
-        <h1 className="text-6xl font-thin tracking-wider text-center">Create React App + Tailwind CSS</h1>
-      </div>
-      <div className="flex items-center">
-        <h2 className="text-6xl font-thin tracking-wider">{content}</h2>
-      </div>
-      <p className="my-6 tracking-wide">
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <div className="mt-6 flex justify-center">
-        <a
-          className="uppercase hover:underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="ml-10 uppercase hover:underline"
-          href="https://tailwindcss.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Tailwind
-        </a>
-      </div>
+    <div>
+      <NavBar></NavBar>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/usuarios" element={<UserList />} />
+          {/* <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/user" element={<BoardUser />} />
+          <Route path="/mod" element={<BoardModerator />} />
+          <Route path="/admin" element={<BoardAdmin />} /> */}
+        </Routes>
     </div>
   )
 }

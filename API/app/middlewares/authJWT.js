@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const db = require("../models");
 
-const {user: User, role: Role } = db;
+const {user: User} = db;
 
 const verifyToken = (req, res, next) => {
     let token = req.headers["x-access-token"];
@@ -18,27 +18,17 @@ const verifyToken = (req, res, next) => {
 };
 
 const isRoled = (r) => (req, res, next) => {
-    User.findById(req.userId).exec((err, user) => {
+    User.findById(req.userId).populate("roles").exec((err, user) => {
         if (err) {
             res.status(500).send({ message: err });
             return;
         }
-        Role.find(
-            {
-                _id: { $in: user.roles }
-            },
-            (e, roles) => {
-                if (e) {
-                    res.status(500).send({ message: e });
-                    return;
-                }
-                if(roles.any((role) => role.name === r)) {
-                    next();
-                    return;
-                }
-                res.status(403).send({ message: "Acceso denegado" });
-            }
-        );
+        const roleNames = user.roles.map(rol => rol.name);
+        if(roleNames.includes(r)) {
+            next();
+            return;
+        }
+        res.status(403).send({ message: "Acceso denegado" });
     });
 };
 
