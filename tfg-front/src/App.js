@@ -3,14 +3,15 @@ import { Routes, Route } from 'react-router-dom'
 import Login from 'pages/Login'
 import Home from 'pages/Home'
 import NavBar from 'components/NavBar'
-import UserList from 'pages/UserList'
+import UserList from 'components/UserList'
+import ControlPanel from 'pages/ControlPanel'
 
 const App = () => {
   return (
     <div>
       <NavBar></NavBar>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<ControlPanel />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/usuarios" element={<UserList />} />
