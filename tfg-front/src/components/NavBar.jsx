@@ -28,35 +28,6 @@ const NavBar = () => {
             SEDEL
           </Link>
         </div>
-        <div
-          className="collapse navbar-collapse flex-grow items-center"
-          id="navbarSupportedContent1"
-        >
-          <div className="flex items-center relative">
-            <ul className="navbar-nav flex flex-row gap-4 pl-0 list-style-none mr-auto">
-              {(showModeratorBoard || showAdminBoard) && (
-                <li className="nav-item">
-                  <Link
-                    to={'/votaciones'}
-                    className="nav-link text-white opacity-80 hover:opacity-100 focus:opacity-80 p-0 hover:decoration-solid"
-                  >
-                    Votaciones
-                  </Link>
-                </li>
-              )}
-              {showAdminBoard && (
-                <li className="nav-item">
-                  <Link
-                    to={'/usuarios'}
-                    className="nav-link text-white opacity-80 hover:opacity-100 focus:opacity-80 p-0 hover:decoration-solid"
-                  >
-                    Usuarios
-                  </Link>
-                </li>
-              )}
-            </ul>
-          </div>
-        </div>
         {currentUser
           ? (
           <ul className="navbar-nav ml-auto flex flex-row gap-4">
