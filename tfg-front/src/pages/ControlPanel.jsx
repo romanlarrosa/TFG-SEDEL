@@ -54,7 +54,7 @@ const ControlPanel = () => {
               Usuarios
             </button>
           </div>
-          {showVotaciones && <UserList />}
+          {!showVotaciones && <UserList />}
         </div>
       )}
     </>
