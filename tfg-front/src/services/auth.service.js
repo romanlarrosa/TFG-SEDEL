@@ -1,11 +1,13 @@
 import axios from 'axios'
 const API_URL = `${process.env.REACT_APP_API_HOST}/api/auth/`
 
-const register = (username, email, password) => {
+const register = (username, email, password, roles) => {
+  const givenRoles = roles === 'admin' ? ['admin', 'moderator'] : ['moderator']
   return axios.post(API_URL + 'signup', {
     username,
     email,
-    password
+    password,
+    roles: givenRoles
   })
 }
 const login = (username, password) => {
