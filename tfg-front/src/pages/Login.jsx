@@ -17,7 +17,6 @@ const Login = () => {
   }
 
   const handleSubmit = (e) => {
-    console.log('A validar....')
     e.preventDefault()
     setMessage('')
     setLoading(true)
