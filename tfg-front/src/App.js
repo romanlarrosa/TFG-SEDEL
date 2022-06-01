@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom'
 import Login from 'pages/Login'
 import Home from 'pages/Home'
 import NavBar from 'components/NavBar'
-import UserList from 'components/UserList'
 import ControlPanel from 'pages/ControlPanel'
 
 const App = () => {
@@ -14,7 +13,6 @@ const App = () => {
           <Route path="/" element={<ControlPanel />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/usuarios" element={<UserList />} />
           {/* <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/user" element={<BoardUser />} />
