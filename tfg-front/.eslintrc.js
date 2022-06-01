@@ -4,6 +4,7 @@ module.exports = {
     es2021: true
   },
   extends: [
+    'eslint:recommended',
     'plugin:react/recommended',
     'standard'
   ],
@@ -15,10 +16,16 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    'react'
+    'react',
+    'eslint-plugin-react'
   ],
   rules: {
     'no-unused-vars': ['warn'],
     'no-debugger': ['warn']
+  },
+  settings: {
+    react: {
+      version: 'detect'
+    }
   }
 }
