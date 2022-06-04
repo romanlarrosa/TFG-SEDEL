@@ -6,7 +6,7 @@ import AuthService from 'services/auth.service'
 const ControlPanel = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false)
   const [showAdminBoard, setShowAdminBoard] = useState(false)
-  const [currentUser, setCurrentUser] = useState(undefined)
+  const [, setCurrentUser] = useState(undefined)
   const [showVotaciones, setShowVotaciones] = useState(true)
 
   useEffect(() => {
