@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import UserService from '../services/user.service'
 import UserCard from 'components/UserCard'
+import { useNavigate } from 'react-router-dom'
+import { isUnauth } from 'handlers/unauth'
 
 const UserList = () => {
   const [users, setUsers] = useState([])
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(true)
+  const navigation = useNavigate()
   useEffect(() => {
     setLoading(true)
     UserService.getAllUsers().then(
@@ -15,6 +18,7 @@ const UserList = () => {
         setLoading(false)
       },
       (error) => {
+        isUnauth(error.message, navigation)
         console.log({ error })
         const _content =
           (error.response && error.response.data) ||
