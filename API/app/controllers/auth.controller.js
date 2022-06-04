@@ -30,7 +30,7 @@ exports.signup = (req, res) => {
                             res.status(500).send({ message: saveError });
                             return;
                         }
-                        res.send({ message: "Usuario registrado exitosamente" });
+                        res.send({ message: "Usuario registrado exitosamente", ok: true });
                     });
                 }
             );
@@ -46,7 +46,7 @@ exports.signup = (req, res) => {
                         res.status(500).send({ message: saveError });
                         return;
                     }
-                    res.send({ message: "Usuario registrado exitosamente" });
+                    res.send({ message: "Usuario registrado exitosamente", ok: true });
                 });
             });
         }

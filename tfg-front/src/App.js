@@ -4,6 +4,7 @@ import Login from 'pages/Login'
 import Home from 'pages/Home'
 import NavBar from 'components/NavBar'
 import ControlPanel from 'pages/ControlPanel'
+import Register from 'pages/Register'
 
 const App = () => {
   return (
@@ -13,8 +14,8 @@ const App = () => {
           <Route path="/" element={<ControlPanel />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/register" element={<Register />} />
+          {/* <Route path="/profile" element={<Profile />} />
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} /> */}
