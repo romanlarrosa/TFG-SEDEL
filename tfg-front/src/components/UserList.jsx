@@ -20,7 +20,6 @@ const UserList = () => {
       },
       (error) => {
         isUnauth(error.message, navigation)
-        console.log({ error })
         const _content =
           (error.response && error.response.data) ||
           error.message ||
