@@ -9,9 +9,14 @@ module.exports = function (app) {
         next();
     });
     app.post(
-        "/api/voting",
+        "/api/votings",
         [Object.values(verifyNewVoting)],
-        [authJWT.verifyToken, authJWT.isAdmin],
+        [authJWT.verifyToken, authJWT.isModerator],
         controller.newVoting
+    );
+    app.get(
+        "/api/votings",
+        [authJWT.verifyToken, authJWT.isModerator],
+        controller.getAllVoting
     );
 };
