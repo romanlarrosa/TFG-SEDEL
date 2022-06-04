@@ -1,4 +1,5 @@
 import UserList from 'components/UserList'
+import VotingList from 'components/VotingList'
 import React, { useState, useEffect } from 'react'
 import AuthService from 'services/auth.service'
 
@@ -37,7 +38,7 @@ const ControlPanel = () => {
               type="button"
               onClick={() => setShowVotaciones(true)}
               className={
-                'py-2 px-4 -mr-0.5 text-sm font-medium rounded-l-lg border-2 border-purple-900 hover:bg-purple-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-purple-900 focus:text-white' +
+                'py-2 px-4 -mr-0.5 text-sm font-medium rounded-l-lg border-2 border-purple-900 hover:bg-purple-900 hover:text-white focus:ring-2 focus:ring-gray-500 focus:bg-purple-900 focus:text-white' +
                 getButtonColours(showVotaciones)
               }
             >
@@ -47,16 +48,16 @@ const ControlPanel = () => {
               type="button"
               onClick={() => setShowVotaciones(false)}
               className={
-                'py-2 px-4 text-sm font-medium rounded-r-md border-2 border-purple-900 hover:bg-purple-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-purple-900 focus:text-white' +
+                'py-2 px-4 text-sm font-medium rounded-r-md border-2 border-purple-900 hover:bg-purple-900 hover:text-white focus:ring-2 focus:ring-gray-500 focus:bg-purple-900 focus:text-white' +
                 getButtonColours(!showVotaciones)
               }
             >
               Usuarios
             </button>
           </div>
-          {!showVotaciones && <UserList />}
         </div>
       )}
+      {showModeratorBoard || (showAdminBoard && showVotaciones) ? <VotingList /> : <UserList />}
     </>
   )
 }
