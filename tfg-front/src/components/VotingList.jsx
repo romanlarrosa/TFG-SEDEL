@@ -14,7 +14,6 @@ const VotingList = () => {
     setLoading(true)
     VotingService.getAllVotings().then(
       (response) => {
-        console.log({ response })
         setVotings(response.data)
         setLoading(false)
       },

@@ -14,7 +14,6 @@ const UserList = () => {
     setLoading(true)
     UserService.getAllUsers().then(
       (response) => {
-        console.log({ response })
         setUsers(response.data)
         setLoading(false)
       },
