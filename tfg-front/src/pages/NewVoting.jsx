@@ -88,8 +88,8 @@ const NewVoting = () => {
             autoComplete="off"
             className="flex flex-col justify-center"
           >
-            <div className="flex flex-row gap-3 mb-1">
-              <div className=" w-1/2">
+            <div className="flex sm:flex-row gap-3 mb-1 flex-col">
+              <div className=" sm:w-1/2">
                 <label htmlFor="name" className='ml-2 text-xs' >Nombre</label>
                 <input
                   type="text"
@@ -110,7 +110,7 @@ const NewVoting = () => {
                   className="mb-1 form-control block w-full px-4 py-2 text-l font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 />
               </div>
-              <div className=" w-1/2 mb-1">
+              <div className=" sm:w-1/2 mb-1">
                 <label htmlFor="endDate" className='ml-2 text-xs' >Sufragio</label>
                 <select
                   value={sufragio}
