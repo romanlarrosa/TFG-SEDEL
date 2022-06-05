@@ -19,4 +19,8 @@ module.exports = function (app) {
         [authJWT.verifyToken, authJWT.isModerator],
         controller.getAllVoting
     );
+    app.get(
+        "/api/votings/:id", 
+        controller.getVotingById
+    );
 };
