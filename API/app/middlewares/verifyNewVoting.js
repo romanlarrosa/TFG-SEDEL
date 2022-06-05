@@ -19,7 +19,7 @@ const checkNotStarted = (req, res, next) => {
             res.status(500).send({message: err});
             return;
         }
-        if (voting.startDate >= Date.now())  {
+        if (voting.startDate <= Date.now())  {
             res.status(400).send({message: "No se puede modificar una votación que ya ha comenzado"});
             return;
         }
