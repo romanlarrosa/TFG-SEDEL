@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import VotingService from 'services/voting.service'
 import ListInput from 'components/ListInput'
+import PropTypes from 'prop-types'
+import { isUnauth } from 'handlers/unauth'
+import { useNavigate } from 'react-router-dom'
 
-const VotingForm = () => {
+const VotingForm = ({ id }) => {
   const [name, setName] = useState('')
   const [startDate, setStartDate] = useState('')
   const [sufragio, setSufragio] = useState('universal')
@@ -14,6 +17,8 @@ const VotingForm = () => {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+
+  const navigation = useNavigate()
 
   // Messages
   const clearMessages = () => {
@@ -29,6 +34,7 @@ const VotingForm = () => {
 
   // Start Date
   const onStartDateChange = (e) => {
+    console.log(e.target.value)
     setStartDate(e.target.value)
     clearMessages()
   }
@@ -47,7 +53,8 @@ const VotingForm = () => {
 
   // Form
   const isRegisterDisabled = (!name || !startDate || !endDate || candidateList.length === 0 || (sufragio === 'restringido' && electorList.length === 0))
-  const handleSubmit = (e) => {
+  const handleSubmitCreate = (e) => {
+    console.log('A crear')
     e.preventDefault()
     clearMessages()
     setLoading(true)
@@ -78,13 +85,67 @@ const VotingForm = () => {
       })
   }
 
+  const handleSubmitEdit = (e) => {
+    console.log('A editar')
+    e.preventDefault()
+    clearMessages()
+    setLoading(true)
+    VotingService.updateVotingById(id, name, sufragio, startDate, endDate, candidateList, electorList)
+      .then((response) => {
+        setLoading(false)
+        response = response.data
+        if (response.ok) {
+          setMessage(response.message)
+        } else {
+          setErrorMessage(response.message)
+        }
+      },
+      (error) => {
+        const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message || error.toString()
+        setLoading(false)
+        setErrorMessage(resMessage)
+      })
+  }
+
+  // Editor
+  if (id) {
+    useEffect(() => {
+      setLoading(true)
+      VotingService.getVotingById(id).then(
+        (response) => {
+          const voting = response.data
+          setLoading(false)
+          setName(voting.name)
+          setSufragio(voting.universal ? 'universal' : 'restringido')
+          console.log(voting.startDate)
+          setStartDate(new Date(voting.startDate).toISOString().slice(0, 16))
+          setEndDate(new Date(voting.endDate).toISOString().slice(0, 16))
+          setCandidateList(voting.candidates.map(candidate => { return candidate.name }))
+          setElectorList(voting.electors.map(elector => { return elector.id }))
+        },
+        (error) => {
+          isUnauth(error.message, navigation)
+          setLoading(false)
+          const _content =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString()
+          setMessage(_content)
+        })
+    }, [id])
+  }
+
   return <section className=" mt-32 h-full w-screen">
     <div className="px-6 h-full text-gray-800 w-screen">
       <div className="flex flex-col justify-center align-middle items-center content-center flex-wrap h-full g-6 gap-9">
-        <h1 className=" text-5xl text-center">Crear votación</h1>
+        <h1 className=" text-5xl text-center">{id ? 'Editar votación' : 'Crear votación'}</h1>
         <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
           <form
-            onSubmit={handleSubmit}
+            onSubmit={id ? handleSubmitEdit : handleSubmitCreate }
             autoComplete="off"
             className="flex flex-col justify-center"
           >
@@ -148,8 +209,9 @@ const VotingForm = () => {
               placeholder="Introduce un elector..."
             />)}
 
-            <button
-              onClick={handleSubmit}
+            {id
+              ? (<button
+              onClick={handleSubmitEdit}
               type="submit"
               disabled={loading || isRegisterDisabled}
               className="py-3 mt-4 bg-purple-800 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-900 active:shadow-lg transition duration-150 ease-in-out disabled:bg-purple-300"
@@ -159,9 +221,23 @@ const VotingForm = () => {
                   <span className="spinner-border animate-spin inline-block w-5 h-2 border-4 rounded-full"></span>
                   )
                 : (
-                  <span>Crear</span>
+                    <span>Guardar</span>
                   )}
-            </button>
+            </button>)
+              : (<button
+              onClick={handleSubmitCreate}
+              type="submit"
+              disabled={loading || isRegisterDisabled}
+              className="py-3 mt-4 bg-purple-800 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-900 active:shadow-lg transition duration-150 ease-in-out disabled:bg-purple-300"
+            >
+              {loading
+                ? (
+                  <span className="spinner-border animate-spin inline-block w-5 h-2 border-4 rounded-full"></span>
+                  )
+                : (
+                    <span>Crear</span>
+                  )}
+            </button>)}
             {errorMessage && (
               <div
                 className="bg-red-100 rounded-lg py-3 px-6 text-base text-red-700 mt-3 text-center"
@@ -183,6 +259,10 @@ const VotingForm = () => {
       </div>
     </div>
   </section>
+}
+
+VotingForm.propTypes = {
+  id: PropTypes.string
 }
 
 export default VotingForm
