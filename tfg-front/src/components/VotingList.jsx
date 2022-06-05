@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import UserService from '../services/user.service'
-import UserCard from 'components/UserCard'
+import VotingService from '../services/voting.service'
 import { useNavigate, Link } from 'react-router-dom'
 import { isUnauth } from 'handlers/unauth'
 import SedelSpinner from './SedelSpinner'
+import VotingCard from './VotingCard'
 
-const UserList = () => {
-  const [users, setUsers] = useState([])
+const VotingList = () => {
+  const [votings, setVotings] = useState([])
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(true)
   const navigation = useNavigate()
   useEffect(() => {
     setLoading(true)
-    UserService.getAllUsers().then(
+    VotingService.getAllVotings().then(
       (response) => {
-        setUsers(response.data)
+        setVotings(response.data)
         setLoading(false)
       },
       (error) => {
@@ -40,19 +40,19 @@ const UserList = () => {
       <div className="flex flex-row flex-wrap justify-center align-top p-20 pt-10 gap-6 text-center w-full">
         <div className='flex flex-col gap-12 items-center'>
           <Link
-            to={'register'}
+            to={'newVoting'}
             className='py-2 self-end px-4 text-sm font-medium rounded-lg border-2 border-purple-900 text-purple-900 hover:bg-purple-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-purple-900 focus:text-white'
           >
-            Nuevo Usuario
+            Nueva Votación
           </Link>
           {loading && (
             <SedelSpinner />
           )}
         </div>
         {!loading &&
-          users.map((user) => <UserCard key={user._id} user={user}></UserCard>)}
+          votings.map((voting) => <VotingCard key={voting._id} voting={voting} />)}
       </div>
     </div>
   )
 }
-export default UserList
+export default VotingList
