@@ -32,3 +32,13 @@ exports.newVoting = (req, res) => {
         }
     });
 };
+
+exports.getVotingById = (req, res) => {
+    Voting.findById(req.params.id).exec((err, voting) => {
+        if (err) {
+            res.status(500).send({message: err});
+        } else {
+            res.json(voting);
+        }
+    });
+};
