@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import VotingService from 'services/voting.service'
 import ListInput from 'components/ListInput'
 
-const NewVoting = () => {
+const VotingForm = () => {
   const [name, setName] = useState('')
   const [startDate, setStartDate] = useState('')
   const [sufragio, setSufragio] = useState('universal')
@@ -185,4 +185,4 @@ const NewVoting = () => {
   </section>
 }
 
-export default NewVoting
+export default VotingForm
