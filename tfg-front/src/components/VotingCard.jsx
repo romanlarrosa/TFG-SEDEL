@@ -14,7 +14,7 @@ const VotingCard = (props) => {
       className="block rounded-lg shadow-lg bg-white mx-10 w-full"
       key={voting._id}
     >
-      <div className={'overflow-hidden rounded-t-lg h-28 bg-purple-400'}></div>
+      <div className={'overflow-hidden rounded-t-lg sm:h-28 h-10 bg-purple-400'}></div>
       <div className="p-6 text-left">
         <h4 className="text-2xl font-semibold mb-4">{voting.name}</h4>
         <hr />
