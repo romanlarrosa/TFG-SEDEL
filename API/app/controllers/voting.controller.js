@@ -42,3 +42,24 @@ exports.getVotingById = (req, res) => {
         }
     });
 };
+
+exports.updateVoting = (req, res) => {
+    Voting.findOneAndUpdate(
+        { _id: req.params.id},
+        {
+            name: req.body.name,
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
+            universal: req.body.universal,
+            electors: req.body.electors,
+            candidates: req.body.candidates
+        },
+        { new: true }
+    ).then((response) => {
+        res.json({
+            voting: response,
+            message: "Votcion actualizada con exito",
+            ok: true
+        });
+    });
+};
