@@ -21,7 +21,7 @@ const VotingCard = (props) => {
         </ul>
         <div className="flex justify-end">
           <Link
-              to={'/voting/edit/' + voting._id}
+              to={'/votings/edit/' + voting._id}
               className="py-2 px-3 bg-purple-800 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-900 active:shadow-lg transition duration-150 ease-in-out disabled:bg-purple-300"
           >Editar</Link>
         </div>
