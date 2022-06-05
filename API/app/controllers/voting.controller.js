@@ -28,7 +28,6 @@ exports.newVoting = (req, res) => {
             return;
         }
         if (createdVoting)  {
-            console.log(createdVoting);
             res.send({message: "Votación creada con exito", ok: true, voting: createdVoting});
         }
     });

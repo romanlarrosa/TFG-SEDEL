@@ -3,7 +3,7 @@ const checkCorrectDates = (req, res, next) => {
         endDate = req.body.endDate;
 
     if(startDate > endDate) {
-        res.status(400).send({message: "Invalid start date and end date provided"});
+        res.status(400).send({message: "Las fechas proporcionadas no son validas"});
         return;
     }
     next();
