@@ -37,7 +37,7 @@ const VotingList = () => {
           {message}
         </div>
       )}
-      <div className="flex flex-row flex-wrap justify-center align-top p-20 pt-10 gap-6 text-center w-full">
+      <div className="flex flex-row flex-wrap justify-center align-top sm:p-20 p-5 pt-10 gap-6 text-center w-full">
         <div className='flex flex-col gap-12 items-center'>
           <Link
             to={'newVoting'}
