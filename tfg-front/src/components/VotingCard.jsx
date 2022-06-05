@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom'
 const VotingCard = (props) => {
   const { voting } = props
 
+  const hasStarted = () => {
+    return new Date(voting.startDate).getTime() < new Date().getTime()
+  }
+
   return (
     <div
       className="block rounded-lg shadow-lg bg-white mx-10 w-full"
@@ -20,10 +24,11 @@ const VotingCard = (props) => {
           <li className="mt-4">Sufragio: {voting.universal ? 'Universal' : 'Restringido' }</li>
         </ul>
         <div className="flex justify-end">
-          <Link
+          {!hasStarted() &&
+          (<Link
               to={'/votings/edit/' + voting._id}
               className="py-2 px-3 bg-purple-800 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-900 active:shadow-lg transition duration-150 ease-in-out disabled:bg-purple-300"
-          >Editar</Link>
+          >Editar</Link>)}
         </div>
       </div>
     </div>
