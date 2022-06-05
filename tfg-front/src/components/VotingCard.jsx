@@ -24,14 +24,7 @@ const VotingCard = (props) => {
 }
 
 VotingCard.propTypes = {
-  voting: {
-    name: PropTypes.string.isRequired,
-    startDate: PropTypes.instanceOf(Date),
-    endDate: PropTypes.instanceOf(Date),
-    universal: PropTypes.bool,
-    electors: PropTypes.array,
-    candidates: PropTypes.array
-  }
+  voting: PropTypes.object
 }
 
 export default VotingCard
