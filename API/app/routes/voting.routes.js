@@ -21,6 +21,7 @@ module.exports = function (app) {
     );
     app.get(
         "/api/votings/:id", 
+        [authJWT.verifyToken, authJWT.isModerator],
         controller.getVotingById
     );
 };
