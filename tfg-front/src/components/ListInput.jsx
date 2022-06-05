@@ -26,12 +26,14 @@ const ListInput = ({ label, id, itemList, setItemList, placeholder }) => {
       <label htmlFor={id} className='ml-2 text-xs mb-0.5' >{label}</label>
       <div className="mb-2 form-control block w-full px-4 py-2 text-l font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
       >
-        {itemList.map((candidateItem, index) => (
-          <div key={candidateItem + index} className="flex flex-row align-middle items-center">
-            <CloseButton onClose={removeItem(index)} />
-            <span className="ml-2">{candidateItem}</span>
-          </div>
-        ))}
+        <div className="max-h-60 overflow-y-scroll">
+          {itemList.map((candidateItem, index) => (
+            <div key={candidateItem + index} className="flex flex-row align-middle items-center">
+              <CloseButton onClose={removeItem(index)} />
+              <span className="ml-2">{candidateItem}</span>
+            </div>
+          ))}
+        </div>
         <input
           id={id}
           onKeyDown={handleInputSubmit}
