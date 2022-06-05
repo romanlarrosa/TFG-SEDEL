@@ -6,13 +6,11 @@ import AuthService from 'services/auth.service'
 const ControlPanel = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false)
   const [showAdminBoard, setShowAdminBoard] = useState(false)
-  const [, setCurrentUser] = useState(undefined)
   const [showVotaciones, setShowVotaciones] = useState(true)
 
   useEffect(() => {
     const user = AuthService.getCurrentUser()
     if (user) {
-      setCurrentUser(user)
       setShowModeratorBoard(
         user.roles.includes('ROLE_MODERATOR') &&
           !user.roles.includes('ROLE_ADMIN')
