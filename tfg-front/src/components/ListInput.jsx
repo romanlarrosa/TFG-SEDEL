@@ -11,6 +11,7 @@ const ListInput = ({ label, id, itemList, setItemList, placeholder }) => {
 
   const handleInputSubmit = (e) => {
     if (e.key === 'Enter' && input) {
+      e.preventDefault()
       setItemList([...itemList, input])
       setInput('')
     }
