@@ -34,7 +34,6 @@ const VotingForm = ({ id }) => {
 
   // Start Date
   const onStartDateChange = (e) => {
-    console.log(e.target.value)
     setStartDate(e.target.value)
     clearMessages()
   }
@@ -54,7 +53,6 @@ const VotingForm = ({ id }) => {
   // Form
   const isRegisterDisabled = (!name || !startDate || !endDate || candidateList.length === 0 || (sufragio === 'restringido' && electorList.length === 0))
   const handleSubmitCreate = (e) => {
-    console.log('A crear')
     e.preventDefault()
     clearMessages()
     setLoading(true)
@@ -86,7 +84,6 @@ const VotingForm = ({ id }) => {
   }
 
   const handleSubmitEdit = (e) => {
-    console.log('A editar')
     e.preventDefault()
     clearMessages()
     setLoading(true)
@@ -121,7 +118,6 @@ const VotingForm = ({ id }) => {
           setLoading(false)
           setName(voting.name)
           setSufragio(voting.universal ? 'universal' : 'restringido')
-          console.log(voting.startDate)
           setStartDate(new Date(voting.startDate).toISOString().slice(0, 16))
           setEndDate(new Date(voting.endDate).toISOString().slice(0, 16))
           setCandidateList(voting.candidates.map(candidate => { return candidate.name }))
