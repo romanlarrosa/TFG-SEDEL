@@ -37,10 +37,10 @@ const VotingList = () => {
           {message}
         </div>
       )}
-      <div className="flex flex-row flex-wrap justify-center align-top p-20 pt-10 gap-6 text-center w-full">
+      <div className="flex flex-row flex-wrap justify-center align-top sm:p-20 p-5 pt-10 gap-6 text-center w-full">
         <div className='flex flex-col gap-12 items-center'>
           <Link
-            to={'newVoting'}
+            to={'votings/new'}
             className='py-2 self-end px-4 text-sm font-medium rounded-lg border-2 border-purple-900 text-purple-900 hover:bg-purple-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-purple-900 focus:text-white'
           >
             Nueva Votación

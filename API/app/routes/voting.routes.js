@@ -10,7 +10,7 @@ module.exports = function (app) {
     });
     app.post(
         "/api/votings",
-        [Object.values(verifyNewVoting)],
+        [verifyNewVoting.checkCorrectDates],
         [authJWT.verifyToken, authJWT.isModerator],
         controller.newVoting
     );
@@ -18,5 +18,16 @@ module.exports = function (app) {
         "/api/votings",
         [authJWT.verifyToken, authJWT.isModerator],
         controller.getAllVoting
+    );
+    app.get(
+        "/api/votings/:id", 
+        [authJWT.verifyToken, authJWT.isModerator],
+        controller.getVotingById
+    );
+    app.put(
+        "/api/votings/:id", 
+        [verifyNewVoting.checkCorrectDates, verifyNewVoting.checkNotStarted],
+        [authJWT.verifyToken, authJWT.isModerator],
+        controller.updateVoting
     );
 };
