@@ -22,7 +22,7 @@ const Login = () => {
     setLoading(true)
     AuthService.login(username, password).then(
       () => {
-        navigation('/home')
+        navigation('/')
         window.location.reload()
       },
       (error) => {
