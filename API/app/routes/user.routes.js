@@ -13,4 +13,9 @@ module.exports = function (app) {
         [authJWT.verifyToken, authJWT.isAdmin],
         controller.getAllUsers
     );
+    app.delete(
+        "/api/users/:id", 
+        [authJWT.verifyToken, authJWT.isAdmin, authJWT.isNotSelf],
+        controller.deleteUserById
+    );
 };

@@ -14,3 +14,21 @@ exports.getAllUsers = (_req, res) => {
             }
         }); 
 };
+
+exports.deleteUserById = (req, res) => {
+    User.findOneAndRemove(
+        { _id: req.params.id},
+        (error, result) => {
+            if (error) {
+                res.status(500).send({message: error});
+            }
+            else {
+                res.json({
+                    message: "Cuenta eliminada con éxito", 
+                    removed: result, 
+                    ok:true
+                });
+            }
+        }
+    );
+};
