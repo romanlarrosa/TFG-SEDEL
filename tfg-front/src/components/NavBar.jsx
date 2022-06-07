@@ -3,15 +3,11 @@ import AuthService from 'services/auth.service'
 import { Link } from 'react-router-dom'
 
 const NavBar = () => {
-  const [showModeratorBoard, setShowModeratorBoard] = useState(false)
-  const [showAdminBoard, setShowAdminBoard] = useState(false)
   const [currentUser, setCurrentUser] = useState(undefined)
   useEffect(() => {
     const user = AuthService.getCurrentUser()
     if (user) {
       setCurrentUser(user)
-      setShowModeratorBoard(user.roles.includes('ROLE_MODERATOR'))
-      setShowAdminBoard(user.roles.includes('ROLE_ADMIN'))
     }
   }, [])
   const logOut = () => {
