@@ -35,8 +35,17 @@ const isRoled = (r) => (req, res, next) => {
 const isAdmin = isRoled("admin");
 const isModerator = isRoled("moderator");
 
+const isNotSelf = (req, res, next) => {
+    if(req.userId !== req.params.id) {
+        res.status(403).send({ message: "Operación no permitida para el usuario" });
+        return;
+    }
+    next();
+};
+
 module.exports = {
     verifyToken,
     isAdmin,
-    isModerator
+    isModerator,
+    isNotSelf
 };
