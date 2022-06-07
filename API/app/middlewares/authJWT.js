@@ -36,7 +36,7 @@ const isAdmin = isRoled("admin");
 const isModerator = isRoled("moderator");
 
 const isNotSelf = (req, res, next) => {
-    if(req.userId !== req.params.id) {
+    if(req.userId === req.params.id) {
         res.status(403).send({ message: "Operación no permitida para el usuario" });
         return;
     }
