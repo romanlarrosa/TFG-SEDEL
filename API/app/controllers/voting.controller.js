@@ -63,3 +63,21 @@ exports.updateVoting = (req, res) => {
         });
     });
 };
+
+exports.deleteVoting = (req, res) => {
+    Voting.findOneAndRemove(
+        { _id: req.params.id},
+        (error, result) => {
+            if (error) {
+                res.status(500).send({message: error});
+            }
+            else {
+                res.json({
+                    message: "Votación eliminada con éxito", 
+                    removed: result, 
+                    ok:true
+                });
+            }
+        }
+    );
+};

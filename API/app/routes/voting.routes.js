@@ -21,7 +21,6 @@ module.exports = function (app) {
     );
     app.get(
         "/api/votings/:id", 
-        [authJWT.verifyToken, authJWT.isModerator],
         controller.getVotingById
     );
     app.put(
@@ -29,5 +28,11 @@ module.exports = function (app) {
         [verifyVoting.checkCorrectDates, verifyVoting.checkNotStarted],
         [authJWT.verifyToken, authJWT.isModerator],
         controller.updateVoting
+    );
+    app.delete(
+        "/api/votings/:id", 
+        [verifyVoting.checkNotStarted],
+        [authJWT.verifyToken, authJWT.isModerator],
+        controller.deleteVoting
     );
 };
