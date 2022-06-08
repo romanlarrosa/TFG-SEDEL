@@ -17,7 +17,7 @@ const UserCard = (props) => {
   }, [])
 
   const handleDelete = () => {
-    const deleteUser = confirm('Eliminar usuario?')
+    const deleteUser = confirm('¿Eliminar usuario?')
     if (deleteUser) {
       UserService.deleteUserById(user._id)
         .then((response) => {
