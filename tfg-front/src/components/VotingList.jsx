@@ -28,16 +28,16 @@ const VotingList = () => {
     )
   }, [])
   return (
-    <div className="flex flex-col justify-center">
+    <div className='flex flex-col justify-center'>
       {message && (
         <div
-          className="bg-red-100 rounded-lg py-3 px-6 text-base text-red-700 mt-3 text-center"
-          role="alert"
+          className='bg-red-100 rounded-lg py-3 px-6 text-base text-red-700 mt-3 text-center'
+          role='alert'
         >
           {message}
         </div>
       )}
-      <div className="flex flex-row flex-wrap justify-center align-top sm:p-20 p-5 pt-10 gap-6 text-center w-full">
+      <div className='flex flex-row flex-wrap justify-center align-top p-20 pt-10 gap-6 text-center w-full'>
         <div className='flex flex-col gap-12 items-center'>
           <Link
             to={'votings/new'}
@@ -45,12 +45,12 @@ const VotingList = () => {
           >
             Nueva Votación
           </Link>
-          {loading && (
-            <SedelSpinner />
-          )}
+          {loading && <SedelSpinner />}
         </div>
         {!loading &&
-          votings.map((voting) => <VotingCard key={voting._id} voting={voting} />)}
+          votings.map((voting) => (
+            <VotingCard key={voting._id} voting={voting} />
+          ))}
       </div>
     </div>
   )

@@ -17,7 +17,9 @@ module.exports = {
   },
   plugins: [
     'react',
-    'eslint-plugin-react'
+    'eslint-plugin-react',
+    'standard',
+    'prettier'
   ],
   rules: {
     'no-unused-vars': ['warn'],

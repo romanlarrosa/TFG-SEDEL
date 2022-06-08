@@ -1,4 +1,4 @@
-const { authJWT, verifyNewVoting } = require("../middlewares");
+const { authJWT, verifyVoting } = require("../middlewares");
 const controller = require("../controllers/voting.controller");
 module.exports = function (app) {
     app.use(function (_req, res, next) {
@@ -10,7 +10,7 @@ module.exports = function (app) {
     });
     app.post(
         "/api/votings",
-        [verifyNewVoting.checkCorrectDates],
+        [verifyVoting.checkCorrectDates],
         [authJWT.verifyToken, authJWT.isModerator],
         controller.newVoting
     );
@@ -21,13 +21,18 @@ module.exports = function (app) {
     );
     app.get(
         "/api/votings/:id", 
-        [authJWT.verifyToken, authJWT.isModerator],
         controller.getVotingById
     );
     app.put(
         "/api/votings/:id", 
-        [verifyNewVoting.checkCorrectDates, verifyNewVoting.checkNotStarted],
+        [verifyVoting.checkCorrectDates, verifyVoting.checkNotStarted],
         [authJWT.verifyToken, authJWT.isModerator],
         controller.updateVoting
+    );
+    app.delete(
+        "/api/votings/:id", 
+        [verifyVoting.checkNotStarted],
+        [authJWT.verifyToken, authJWT.isModerator],
+        controller.deleteVoting
     );
 };
