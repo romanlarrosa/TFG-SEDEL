@@ -33,10 +33,15 @@ const updateVotingById = (id, name, sufragio, startDate, endDate, candidateList,
   return axios.put(API_URL + 'votings/' + id, { ...voting }, { headers: authHeader() })
 }
 
+const deleteVotingById = (id) => {
+  return axios.delete(API_URL + 'votings/' + id, { headers: authHeader() })
+}
+
 const VotingService = {
   getAllVotings,
   createVoting,
   getVotingById,
-  updateVotingById
+  updateVotingById,
+  deleteVotingById
 }
 export default VotingService
