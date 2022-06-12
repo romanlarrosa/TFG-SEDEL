@@ -4,9 +4,11 @@ dotenv.config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const path = require("path");
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("build"));
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -24,15 +26,13 @@ db.mongoose
         console.log("Connection error", err);
     });
 
-// routes
-app.get("/", (_req, res) => {
-    res.json({ message: "Welcome to the api" });
-});
-
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/voting.routes")(app);
 
+app.get("*", (_req, res) => {
+    res.sendFile(path.join(__dirname + "/build/index.html"));
+});
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
