@@ -19,7 +19,7 @@ const NavBar = () => {
         <div className="navbar-toggler text-gray-200 border-0 hover:shadow-none hover:no-underline py-2 px-2.5 pr-7 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline">
           <Link
             to={'/'}
-            className="text-size-200 text-xl font-bold hover:text-gray-400"
+            className="text-size-200 text-white text-xl font-bold hover:text-gray-400"
           >
             SEDEL
           </Link>

@@ -14,10 +14,10 @@ const UserCard = (props) => {
     if (currentUser) {
       setShowDelete(currentUser.id !== user._id)
     }
-  }, [])
+  }, [user._id])
 
   const handleDelete = () => {
-    const deleteUser = confirm('¿Eliminar usuario?')
+    const deleteUser = window.confirm('¿Eliminar usuario?')
     if (deleteUser) {
       UserService.deleteUserById(user._id)
         .then((response) => {

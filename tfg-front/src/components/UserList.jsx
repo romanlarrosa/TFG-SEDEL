@@ -26,7 +26,7 @@ const UserList = () => {
         setMessage(_content)
       }
     )
-  }, [])
+  }, [navigation])
   return (
     <div className='flex flex-col justify-center'>
       {message && (
