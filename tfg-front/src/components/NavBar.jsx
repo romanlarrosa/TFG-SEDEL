@@ -14,7 +14,7 @@ const NavBar = () => {
     AuthService.logout()
   }
   return (
-    <nav className="sticky top-0 w-full flex flex-wrap items-center justify-between py-3 bg-purple-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light">
+    <nav className="sticky top-0 w-full flex flex-wrap items-center justify-between py-3 bg-purple-900 text-gray-200 shadow-lg navbar navbar-expand-lg navbar-light z-50">
       <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
         <div className="navbar-toggler text-gray-200 border-0 hover:shadow-none hover:no-underline py-2 px-2.5 pr-7 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline">
           <Link
