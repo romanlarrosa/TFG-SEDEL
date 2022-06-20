@@ -6,6 +6,7 @@ import NavBar from 'components/NavBar'
 import Register from 'pages/Register'
 import VotingForm from 'pages/VotingForm'
 import EditVoting from 'pages/EditVoting'
+import ElectorVote from 'pages/ElectorVote';
 
 const App = () => {
   return (
@@ -17,10 +18,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/votings/new" element={<VotingForm />} />
           <Route path="/votings/edit/:id" element={<EditVoting />} />
-          {/* <Route path="/profile" element={<Profile />} />
-          <Route path="/user" element={<BoardUser />} />
-          <Route path="/mod" element={<BoardModerator />} />
-          <Route path="/admin" element={<BoardAdmin />} /> */}
+          <Route path="/vote/:id" element={<ElectorVote />} />
         </Routes>
     </div>
   )
