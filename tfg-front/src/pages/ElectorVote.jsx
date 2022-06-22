@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import VotingService from 'services/voting.service'
 import CAService from 'services/ca.service'
 import {
@@ -25,15 +25,15 @@ const ElectorVote = () => {
   const [candidateList, setCandidateList] = useState([])
   const [candidateSelected, setCandidateSelected] = useState('')
 
+  const navigation = useNavigate()
+
   const handlePapeletaChange = (e) => {
     setCandidateSelected(e.target.id)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const form = e.target
-    CAService.validate(form, candidateSelected)
-    
+    CAService.validate(candidateSelected, navigation)
   }
 
   useEffect(() => {
@@ -100,9 +100,6 @@ const ElectorVote = () => {
             <form
               className='flex flex-col'
               onChange={handlePapeletaChange}
-              action='https://localhost:8081/validate'
-              method='post'
-              name='candidate'
               onSubmit={handleSubmit}
             >
               {candidateList.map((candidate) => (
