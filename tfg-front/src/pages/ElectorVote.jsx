@@ -33,7 +33,7 @@ const ElectorVote = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    CAService.validate(candidateSelected, navigation)
+    CAService.validate(candidateSelected, paramId, navigation)
   }
 
   useEffect(() => {
