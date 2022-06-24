@@ -29,24 +29,24 @@ const ControlPanel = () => {
       {showAdminBoard && (
         <div>
           <div
-            className=" mt-10 inline-flex rounded-md w-full justify-center"
-            role="group"
+            className='mt-10 inline-flex rounded-md w-full justify-center'
+            role='group'
           >
             <button
-              type="button"
+              type='button'
               onClick={() => setShowVotaciones(true)}
               className={
-                'py-2 px-4 -mr-0.5 text-sm font-medium rounded-l-lg border-2 border-purple-900 hover:bg-purple-900 hover:text-white focus:ring-2 focus:ring-gray-500 focus:bg-purple-900 focus:text-white' +
+                'py-2 px-4 -mr-0.5 text-sm font-medium rounded-l-lg border-2 border-purple-900 hover:bg-purple-900 hover:text-white focus:ring-0 focus:ring-gray-500 focus:bg-purple-900 focus:text-white' +
                 getButtonColours(showVotaciones)
               }
             >
               Votaciones
             </button>
             <button
-              type="button"
+              type='button'
               onClick={() => setShowVotaciones(false)}
               className={
-                'py-2 px-4 text-sm font-medium rounded-r-md border-2 border-purple-900 hover:bg-purple-900 hover:text-white focus:ring-2 focus:ring-gray-500 focus:bg-purple-900 focus:text-white' +
+                'py-2 px-4 text-sm font-medium rounded-r-md border-2 border-purple-900 hover:bg-purple-900 hover:text-white focus:ring-0 focus:ring-gray-500 focus:bg-purple-900 focus:text-white' +
                 getButtonColours(!showVotaciones)
               }
             >
@@ -55,7 +55,11 @@ const ControlPanel = () => {
           </div>
         </div>
       )}
-      {showModeratorBoard || (showAdminBoard && showVotaciones) ? <VotingList /> : <UserList />}
+      {showModeratorBoard || (showAdminBoard && showVotaciones) ? (
+        <VotingList />
+      ) : (
+        <UserList />
+      )}
     </>
   )
 }

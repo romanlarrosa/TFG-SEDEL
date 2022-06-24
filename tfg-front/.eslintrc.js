@@ -4,9 +4,11 @@ module.exports = {
     es2021: true
   },
   extends: [
+    'react-app',
     'eslint:recommended',
     'plugin:react/recommended',
-    'standard'
+    'standard',
+    'prettier'
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -17,8 +19,6 @@ module.exports = {
   },
   plugins: [
     'react',
-    'eslint-plugin-react',
-    'standard',
     'prettier'
   ],
   rules: {

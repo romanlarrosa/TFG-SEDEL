@@ -12,7 +12,7 @@ const VotingCard = (props) => {
   }
 
   const handleDelete = () => {
-    if (confirm('¿Eliminar votación?')) {
+    if (window.confirm('¿Eliminar votación?')) {
       VotingService.deleteVotingById(voting._id)
         .then(({ data }) => {
           data.ok && setDeleted(true)

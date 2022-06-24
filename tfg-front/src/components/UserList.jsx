@@ -26,18 +26,18 @@ const UserList = () => {
         setMessage(_content)
       }
     )
-  }, [])
+  }, [navigation])
   return (
-    <div className="flex flex-col justify-center">
+    <div className='flex flex-col justify-center'>
       {message && (
         <div
-          className="bg-red-100 rounded-lg py-3 px-6 text-base text-red-700 mt-3 text-center"
-          role="alert"
+          className='bg-red-100 rounded-lg py-3 px-6 text-base text-red-700 mt-3 text-center'
+          role='alert'
         >
           {message}
         </div>
       )}
-      <div className="flex flex-row flex-wrap justify-center align-top p-20 pt-10 gap-6 text-center w-full">
+      <div className='flex flex-row flex-wrap justify-center align-top p-2 sm:p-20 sm:pt-10 pt-10 gap-6 text-center w-full'>
         <div className='flex flex-col gap-12 items-center'>
           <Link
             to={'register'}
@@ -45,12 +45,12 @@ const UserList = () => {
           >
             Nuevo Usuario
           </Link>
-          {loading && (
-            <SedelSpinner />
-          )}
+          {loading && <SedelSpinner />}
         </div>
         {!loading &&
-          users.map((user) => <UserCard key={user._id} user={user}></UserCard>)}
+          users.map((user) => (
+            <UserCard key={user._id} user={user}></UserCard>
+          ))}
       </div>
     </div>
   )

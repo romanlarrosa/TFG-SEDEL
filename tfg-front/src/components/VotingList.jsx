@@ -26,7 +26,7 @@ const VotingList = () => {
         setMessage(_content)
       }
     )
-  }, [])
+  }, [navigation])
   return (
     <div className='flex flex-col justify-center'>
       {message && (
@@ -37,7 +37,7 @@ const VotingList = () => {
           {message}
         </div>
       )}
-      <div className='flex flex-row flex-wrap justify-center align-top p-20 pt-10 gap-6 text-center w-full'>
+      <div className='flex flex-row flex-wrap justify-center align-top p-2 sm:p-20 sm:pt-10 pt-10 gap-6 text-center w-full'>
         <div className='flex flex-col gap-12 items-center'>
           <Link
             to={'votings/new'}

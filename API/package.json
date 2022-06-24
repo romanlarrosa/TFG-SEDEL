@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "build:ui": "cd ../tfg-front && npm run build:full:w",
     "externalize": "wsl rsync -av --progress * ../../deployCE --exclude node_modules",
-    "deploy:full": "npm run externalize && cd ../../deployCE && git add . && git commit -m build && git push heroku master"
+    "deploy:full": "npm run build:ui && npm run externalize && cd ../../deployCE && git add . && git commit -m build && git push heroku master"
   },
   "author": "romanlarrosa",
   "license": "ISC",
