@@ -19,11 +19,16 @@ const options = {
   rejectUnauthorized: false
 }
 
-const app = express()
+const httpsApp = express()
+const keyServer = express()
 
-app.use(cors())
-app.use(bp.json())
-app.use(bp.urlencoded({ extended: true }))
+httpsApp.use(cors())
+httpsApp.use(bp.json())
+httpsApp.use(bp.urlencoded({ extended: true }))
+
+keyServer.use(cors())
+keyServer.use(bp.json())
+keyServer.use(bp.urlencoded({ extended: true }))
 
 const key = BlindSignature.keyGeneration({ b: 2048 })
 
@@ -39,23 +44,23 @@ db.mongoose
     console.log('Connection error', err)
   })
 
-app.set('view engine', 'hbs')
-app.set('views', path.join(__dirname, 'views'))
+httpsApp.set('view engine', 'hbs')
+httpsApp.set('views', path.join(__dirname, 'views'))
 
 const { certRequest, allowVoting } = require('./middlewares')
 
-app.get('/keys', (_req, res) => {
+keyServer.get('/keys', (_req, res) => {
   res.send({
     n: key.keyPair.n.toString(),
     e: key.keyPair.e.toString()
   })
 })
 
-app.post('/test/validate', (req, res) => {
+httpsApp.post('/test/validate', (req, res) => {
   res.send(req.body.vote)
 })
 
-app.post(
+httpsApp.post(
   '/validate',
   Object.values(certRequest),
   Object.values(allowVoting),
@@ -76,6 +81,10 @@ app.post(
 )
 
 const PORT = process.env.PORT || 8081
-https.createServer(options, app).listen(PORT, () => {
+https.createServer(options, httpsApp).listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
+})
+
+keyServer.listen(8082, () => {
+  console.log('Key server running on port 8082')
 })
