@@ -7,7 +7,7 @@ const requestCertificate = (req, res, next) => {
     next()
   } else if (cert.subject) {
     res.render('error', {
-      errorCause: `Perdon ${cert.subject.CN}, los certificados de ${cert.issuer.CN} no están permitidos.`
+      errorCause: `${cert.subject.CN}, los certificados de ${cert.issuer.CN} no están permitidos.`
     })
     return
   } else {

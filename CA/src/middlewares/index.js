@@ -1,7 +1,7 @@
-const certRequest = require("./certRequest");
-const allowVoting = require("./allowVoting")
+const certRequest = require('./certRequest')
+const allowVoting = require('./allowVoting')
 
 module.exports = {
-    certRequest,
-    allowVoting
+  certRequest,
+  allowVoting
 }
