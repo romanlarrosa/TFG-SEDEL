@@ -94,7 +94,7 @@ const deleteVotingById = (id) => {
 const sendVote = () => {
   const blinding = JSON.parse(window.localStorage.getItem('blinding'))
   const unblinded = window.localStorage.getItem('unblinded')
-  console.log('Unblinded: ' + unblinded + '')
+  
   return axios.post(
     API_URL + 'votings/' + blinding.votingId + '/vote',
     { vote: blinding.message, signed: unblinded }
