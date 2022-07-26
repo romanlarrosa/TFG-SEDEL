@@ -34,8 +34,12 @@ const ConfirmVoting = () => {
     e.preventDefault()
     VotingService.sendVote().then((response) => {
       if (response.data?.ok) {
+        window.localStorage.setItem(
+          'voteIdentificator',
+          response.data.identificator
+        )
         CAService.cleanLocalStorage()
-        navigator('/successfulVoting')
+        navigator('/successfullVoting')
       } else {
         console.log('ERROR')
       }
