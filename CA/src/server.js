@@ -25,6 +25,7 @@ const keyServer = express()
 httpsApp.use(cors())
 httpsApp.use(bp.json())
 httpsApp.use(bp.urlencoded({ extended: true }))
+httpsApp.use(express.static('public'))
 
 keyServer.use(cors())
 keyServer.use(bp.json())
@@ -65,6 +66,12 @@ httpsApp.post(
   Object.values(certRequest),
   Object.values(allowVoting),
   (req, res) => {
+    // Sign ballot
+    const signed = BlindSignature.sign({
+      blinded: req.vote.candidate,
+      key
+    })
+    // Set user voted
     db.voting.findOneAndUpdate(
       { _id: req.voting._id },
       { $push: { voted: { id: req.cert.subject.CN } } },
@@ -74,9 +81,13 @@ httpsApp.post(
         }
       }
     )
-    res.send(
-      `Hello, ${req.cert.subject.CN}, your certificate was issued by ${req.cert.issuer.CN}! You are trying to vote in ${req.vote.voting}`
-    )
+    //Render success and send to client
+    res.render('success', {
+      message:
+        'Voto verificado con éxito. Puede volver a la plataforma.',
+      signed: signed + '',
+      origin: req.vote.origin
+    })
   }
 )
 
