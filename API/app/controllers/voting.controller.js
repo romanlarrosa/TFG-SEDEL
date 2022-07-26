@@ -23,7 +23,8 @@ exports.postVote = (req, res) => {
                 res.status(500).send({ message: err });
                 return;
             }
-            res.json({ ok: true });
+            console.log(vote);
+            res.json({ ok: true, identificator: vote.ballot.slice(-1)[0]._id });
         }
     );
 };
