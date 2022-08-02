@@ -19,24 +19,23 @@ module.exports = function (app) {
         [authJWT.verifyToken, authJWT.isModerator],
         controller.getAllVoting
     );
-    app.get(
-        "/api/votings/:id", 
-        controller.getVotingById
-    );
+    app.get("/api/votings/:id", controller.getVotingById);
     app.put(
-        "/api/votings/:id", 
+        "/api/votings/:id",
         [verifyVoting.checkCorrectDates, verifyVoting.checkNotStarted],
         [authJWT.verifyToken, authJWT.isModerator],
         controller.updateVoting
     );
     app.delete(
-        "/api/votings/:id", 
+        "/api/votings/:id",
         [verifyVoting.checkNotStarted],
         [authJWT.verifyToken, authJWT.isModerator],
         controller.deleteVoting
     );
-    app.post(
-        "/api/votings/:id/vote", 
-        controller.postVote
-    );
+    app.post("/api/votings/:id/vote", controller.postVote);
+    app.put("/api/votings/:id/escrutinio", [
+        authJWT.verifyToken,
+        authJWT.isModerator
+    ],
+    controller.setEscrutinio);
 };
