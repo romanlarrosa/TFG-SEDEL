@@ -96,3 +96,17 @@ exports.deleteVoting = (req, res) => {
         }
     });
 };
+
+exports.setEscrutinio = (req, res) => {
+    Voting.findOneAndUpdate(
+        { _id: req.params.id },
+        { escrutined: req.body.value },
+        { new: true }
+    ).then((response) => {
+        res.json({
+            voting: response,
+            message: "Escrutinio actualizado con exito",
+            ok: true
+        });
+    });
+};
