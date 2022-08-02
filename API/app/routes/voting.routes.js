@@ -35,4 +35,8 @@ module.exports = function (app) {
         [authJWT.verifyToken, authJWT.isModerator],
         controller.deleteVoting
     );
+    app.post(
+        "/api/votings/:id/vote", 
+        controller.postVote
+    );
 };

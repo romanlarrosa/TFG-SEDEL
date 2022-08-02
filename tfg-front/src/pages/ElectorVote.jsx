@@ -33,7 +33,13 @@ const ElectorVote = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    CAService.validate(candidateSelected, paramId, navigation)
+    if (
+      window.confirm(
+        '¿Está seguro de firmar su voto? Quedará registrado en el sistema y no podrá cambiar su votación una vez firmada.'
+      )
+    ) {
+      CAService.validate(candidateSelected, paramId, navigation)
+    }
   }
 
   useEffect(() => {
@@ -128,9 +134,9 @@ const ElectorVote = () => {
                 color='purple'
                 disabled={!candidateSelected}
                 variant='gradient'
-                className='w-32 m-auto mt-3 disabled:opacity-40'
+                className='w-40 m-auto mt-3 disabled:opacity-40'
               >
-                Votar
+                Firmar Voto
               </Button>
             </form>
           </CardBody>

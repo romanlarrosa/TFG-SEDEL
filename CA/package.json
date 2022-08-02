@@ -1,0 +1,31 @@
+{
+  "name": "ca",
+  "version": "1.0.0",
+  "description": "Certification authority",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "browserize": "browserify public/js/main.js -o public/dist/bundle.js -t babelify"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "blind-signatures": "^1.0.7",
+    "body-parser": "^1.20.0",
+    "browserify": "^17.0.0",
+    "cors": "^2.8.5",
+    "cross-domain-storage": "^2.0.7",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "flatted": "^3.2.5",
+    "hbs": "^4.2.0",
+    "mongoose": "^6.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "babelify": "^10.0.0"
+  }
+}

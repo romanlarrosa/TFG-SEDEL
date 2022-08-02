@@ -50,6 +50,9 @@ const VotingCard = (props) => {
               Sufragio:{' '}
               {voting.universal ? 'Universal' : 'Restringido'}
             </li>
+            <li className='mt-4'>
+              ID: {voting._id}
+            </li>
           </ul>
           <div className='flex flex-row-reverse gap-3'>
             {!hasStarted() && (
