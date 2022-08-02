@@ -7,7 +7,6 @@ import SedelSpinner from './SedelSpinner'
 
 const VotingCard = (props) => {
   const { voting, editMode } = props
-  console.log("viewMode: ", editMode)
   const [deleted, setDeleted] = useState(false)
   const [isEscrutined, setIsEscrutined] = useState(voting.escrutined)
   const [loadingEscrutinio, setLoadingEscrutinio] = useState(false)
