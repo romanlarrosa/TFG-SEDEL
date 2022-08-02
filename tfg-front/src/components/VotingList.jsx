@@ -49,7 +49,7 @@ const VotingList = () => {
         </div>
         {!loading &&
           votings.map((voting) => (
-            <VotingCard key={voting._id} voting={voting} />
+            <VotingCard key={voting._id} voting={voting} editMode={true} />
           ))}
       </div>
     </div>
