@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import {
   Card,
   CardHeader,
@@ -8,7 +9,7 @@ import {
   Button
 } from '@material-tailwind/react'
 
-export default function SearchVoting() {
+export default function SearchVoting({ link, action, helpText }) {
   const navigator = useNavigate()
   const [voteId, setVoteId] = useState('')
 
@@ -18,7 +19,7 @@ export default function SearchVoting() {
 
   const onKeyEnter = (e) => {
     if (e.key === 'Enter' && voteId) {
-      navigator(`/vote/${voteId}`)
+      navigator(`/${link}${voteId}`)
     }
   }
 
@@ -39,20 +40,24 @@ export default function SearchVoting() {
         />
       </CardHeader>
       <CardBody className='text-center'>
-        <Link to={`/vote/${voteId}`}>
+        <Link to={`/${link}${voteId}`}>
           <Button
             variant='gradient'
             color='deep-purple'
             size='md'
             className='mb-8'
           >
-            Votar
+            {action}
           </Button>
         </Link>
-        <Typography className='flex flex-col'>
-          Introduce el ID de la votación en la que desees participar
-        </Typography>
+        <Typography className='flex flex-col'>{helpText}</Typography>
       </CardBody>
     </Card>
   )
+}
+
+SearchVoting.propTypes = {
+  link: PropTypes.string,
+  action: PropTypes.string,
+  helpText: PropTypes.string
 }

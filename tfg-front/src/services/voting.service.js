@@ -101,12 +101,17 @@ const sendVote = () => {
   )
 }
 
+const calcularEscrutinio = (id) => {
+  return axios.put(API_URL + 'votings/' + id + '/escrutinio', {value: true}, { headers: authHeader() })
+}
+
 const VotingService = {
   getAllVotings,
   createVoting,
   getVotingById,
   updateVotingById,
   deleteVotingById,
-  sendVote
+  sendVote,
+  calcularEscrutinio
 }
 export default VotingService

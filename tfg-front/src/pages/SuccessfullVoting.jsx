@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import CAService from 'services/ca.service'
-import VotingService from 'services/voting.service'
+
 import {
   Card,
   CardHeader,

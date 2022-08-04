@@ -9,7 +9,9 @@ const Voting = mongoose.model(
         universal: Boolean,
         electors: [{ id: String }],
         candidates: [{ name: String }],
-        ballot: [{ vote: String }]
+        ballot: [{ vote: String }],
+        voted: [{ id: String }],
+        escrutined: Boolean
     })
 );
 module.exports = Voting;
