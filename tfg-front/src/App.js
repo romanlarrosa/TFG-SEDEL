@@ -36,7 +36,7 @@ const App = () => {
         <Route path='/vote/:id' element={<ElectorVote />} />
         <Route path='/confirmVoting' element={<ConfirmVoting />} />
         <Route path='/successfullVoting' element={<SuccessfullVoting />} />
-        <Route path='/votings/:id/view' element={<ViewVoting />} />
+        <Route path='/votings/view/:id' element={<ViewVoting />} />
       </Routes>
     </div>
   )

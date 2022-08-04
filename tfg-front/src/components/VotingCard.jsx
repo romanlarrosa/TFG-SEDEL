@@ -37,7 +37,7 @@ const VotingCard = (props) => {
   }
 
   const handleVerResultados = () => {
-    navigator(`/votings/${voting._id}/view`)
+    navigator(`/votings/view/${voting._id}`)
   }
 
   const handleDelete = () => {
