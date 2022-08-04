@@ -10,7 +10,6 @@ const ViewVoting = () => {
   const { id } = useParams()
   const [loading, setLoading] = useState(true)
   const [voting, setVoting] = useState(null)
-  const [message, setMessage] = useState('')
   const navigation = useNavigate()
 
   const hasEnded = () => {
@@ -27,11 +26,7 @@ const ViewVoting = () => {
         },
         (error) => {
           setLoading(false)
-          const _content =
-            (error.response && error.response.data) ||
-            error.message ||
-            error.toString()
-          setMessage(_content)
+          console.log(error);
         }
       )
     }
