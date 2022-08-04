@@ -13,13 +13,27 @@ const ElectorHome = () => {
     <Tabs value='votar' className='overflow-hidden'>
       <TabsHeader className='sticky top-0 rounded-none items-center'>
         <Tab value='votar'>Votar</Tab>
-        <Tab value='integridad'>Comprobar integridad</Tab>
+        <Tab value='integridad'>Comprobar votación</Tab>
         <Tab value='verificar'>Verificar voto</Tab>
       </TabsHeader>
       <TabsBody>
-        <TabPanel value='votar'><SearchVoting /></TabPanel>
-        <TabPanel value='integridad'>Comprobar integridad</TabPanel>
-        <TabPanel value='verificar' className='flex justify-center'>Verificar voto</TabPanel>
+        <TabPanel value='votar'>
+          <SearchVoting
+            link='vote/'
+            action='Votar'
+            helpText='Introduce el ID de la votación en la que desees participar'
+          />
+        </TabPanel>
+        <TabPanel value='integridad'>
+          <SearchVoting
+            link='votings/view/'
+            action='Comprobar votación'
+            helpText='Introduce el ID de la votación que desees comprobar'
+          />
+        </TabPanel>
+        <TabPanel value='verificar' className='flex justify-center'>
+          Verificar voto
+        </TabPanel>
       </TabsBody>
     </Tabs>
   )
