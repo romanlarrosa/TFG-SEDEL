@@ -38,4 +38,5 @@ module.exports = function (app) {
         authJWT.isModerator
     ],
     controller.setEscrutinio);
+    app.get("/api/ballot/:id", controller.getVoteById);
 };
