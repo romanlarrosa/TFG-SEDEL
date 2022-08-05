@@ -61,6 +61,10 @@ const getVotingById = (id) => {
   })
 }
 
+const getVoteById = (id) => {
+  return axios.get(API_URL + 'ballot/' + id)
+}
+
 const updateVotingById = (
   id,
   name,
@@ -109,6 +113,7 @@ const VotingService = {
   getAllVotings,
   createVoting,
   getVotingById,
+  getVoteById,
   updateVotingById,
   deleteVotingById,
   sendVote,
