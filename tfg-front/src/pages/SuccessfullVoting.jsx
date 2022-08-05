@@ -20,7 +20,6 @@ const SuccessfullVoting = () => {
       setIdentificator(
         window.localStorage.getItem('voteIdentificator')
       )
-      console.log('Identificador: ', identificator)
     }, 1000)
     if (identificator) {
       setLoading(false)

@@ -63,7 +63,6 @@ exports.getVotingById = (req, res) => {
 };
 
 exports.getVoteById = (req, res) => {
-    console.log(req.params.id);
     Voting.findOne({ "ballot._id": req.params.id }).exec((err, result) => {
         if (err) {
             console.log(err);
