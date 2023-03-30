@@ -10,6 +10,7 @@ import ElectorVote from 'pages/ElectorVote'
 import ConfirmVoting from 'pages/ConfirmVoting';
 import SuccessfullVoting from 'pages/SuccessfullVoting';
 import ViewVoting from 'pages/ViewVoting';
+import VerifyVote from 'pages/VerifyVote';
 const createHost = require('cross-domain-storage/host')
 // eslint-disable-next-line no-unused-vars
 const storageHost = createHost([
@@ -37,6 +38,7 @@ const App = () => {
         <Route path='/confirmVoting' element={<ConfirmVoting />} />
         <Route path='/successfullVoting' element={<SuccessfullVoting />} />
         <Route path='/votings/view/:id' element={<ViewVoting />} />
+        <Route path='/vote/verify/:id' element={<VerifyVote />} />
       </Routes>
     </div>
   )

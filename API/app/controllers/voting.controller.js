@@ -62,6 +62,16 @@ exports.getVotingById = (req, res) => {
     });
 };
 
+exports.getVoteById = (req, res) => {
+    Voting.findOne({ "ballot._id": req.params.id }).exec((err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(result);
+        }
+    });
+};
+
 exports.updateVoting = (req, res) => {
     Voting.findOneAndUpdate(
         { _id: req.params.id },

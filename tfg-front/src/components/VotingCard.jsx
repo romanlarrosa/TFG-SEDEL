@@ -25,7 +25,6 @@ const VotingCard = (props) => {
     VotingService.calcularEscrutinio(voting._id).then(
       (response) => {
         if (response.data.ok) {
-          console.log('Is escrutined')
           setIsEscrutined(true)
           setLoadingEscrutinio(false)
         }

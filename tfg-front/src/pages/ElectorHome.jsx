@@ -31,8 +31,12 @@ const ElectorHome = () => {
             helpText='Introduce el ID de la votación que desees comprobar'
           />
         </TabPanel>
-        <TabPanel value='verificar' className='flex justify-center'>
-          Verificar voto
+        <TabPanel value='verificar'>
+          <SearchVoting
+            link='vote/verify/'
+            action='Verificar voto'
+            helpText='Introduce el ID del voto que desees verficar.'
+          />
         </TabPanel>
       </TabsBody>
     </Tabs>

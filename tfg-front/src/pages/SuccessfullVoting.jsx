@@ -20,7 +20,6 @@ const SuccessfullVoting = () => {
       setIdentificator(
         window.localStorage.getItem('voteIdentificator')
       )
-      console.log('Identificador: ', identificator)
     }, 1000)
     if (identificator) {
       setLoading(false)
@@ -51,7 +50,7 @@ const SuccessfullVoting = () => {
               color='white'
               className='text-center text-2xl font-semibold p-1 text-white'
             >
-              Confirmar voto
+              Voto emitido con éxito
             </Typography>
           </CardHeader>
           <CardBody className='flex flex-col'>
