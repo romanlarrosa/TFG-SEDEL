@@ -1,6 +1,6 @@
 # SEDEL
 
-El Sistema Electrónico Democrático En Linea es un producto diseñado para la gestión y participación en elecciones garantizando los principios de la democracia.
+El Sistema Electoral Democrático En Linea es un producto diseñado para la gestión y participación en elecciones garantizando los principios de la democracia.
 
 ## Arquitectura
 
